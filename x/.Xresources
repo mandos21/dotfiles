@@ -1,0 +1,55 @@
+*color0:	#0B2D33
+*color1:	#4897B0
+*color10:	#54A1B8
+*color11:	#5AB0C7
+*color12:	#65BAD1
+*color13:	#6CC4D9
+*color14:	#74CDE2
+*color15:	#A5A1B4
+*color2:	#54A1B8
+*color3:	#5AB0C7
+*color4:	#65BAD1
+*color5:	#6CC4D9
+*color6:	#74CDE2
+*color66:	#0B2D33
+*color7:	#A5A1B4
+*color8:	#6c8184
+*color9:	#4897B0
+*customization:	-color
+URxvt*background:	[100]#0B2D33
+URxvt*borderColor:	[100]#0B2D33
+URxvt*cursorColor:	#A5A1B4
+URxvt*depth:		32
+URxvt*foreground:	#A5A1B4
+UXTerm*background:	#0B2D33
+UXTerm*cursorColor:	#A5A1B4
+UXTerm*foreground:	#A5A1B4
+XClock*background:	#0B2D33
+XClock*foreground:	#A5A1B4
+XClock*hourColor:	rgba:a5/a1/b4/ff
+XClock*majorColor:	rgba:a5/a1/b4/ff
+XClock*minorColor:	rgba:a5/a1/b4/ff
+XClock*minuteColor:	rgba:a5/a1/b4/ff
+XClock*secondColor:	rgba:a5/a1/b4/ff
+XTerm*background:	#0B2D33
+XTerm*cursorColor:	#A5A1B4
+XTerm*foreground:	#A5A1B4
+Xcursor.size:	24
+Xcursor.theme:	DMZ-White
+Xft.antialias:	1
+Xft.dpi:	96
+Xft.hinting:	1
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+emacs*background:	#0B2D33
+emacs*foreground:	#A5A1B4
+rofi.color-active:	#0B2D33, #A5A1B4, #0B2D33, #54A1B8, #0B2D33
+rofi.color-normal:	#0B2D33, #A5A1B4, #0B2D33, #54A1B8, #0B2D33
+rofi.color-urgent:	#0B2D33, #4897B0, #0B2D33, #4897B0, #A5A1B4
+rofi.color-window:	#0B2D33, #0B2D33, #54A1B8
+urxvt.font:	xft:hack:pixelsize=12:antialias=true
+urxvt.internalBorder:	30
+urxvt.scrollBar:	False
+urxvt.shading:	40
+urxvt.transparent:	true
+urxvt.enable-unicode3: true

@@ -1,0 +1,311 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:FantasqueSansMono-Regular 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+#font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Pixel Gap Configuration
+gaps inner 0
+gaps outer 0
+
+for_window [class="^.*"] border pixel 3
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec urxvt
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (a program launcher)
+bindsym $mod+d exec rofi -show run -lines 5 -eh 1 -width 600 -location 0 -hide-scrollbar -bw 4 -opacity 100 -bc "#283e26" -bg "#1f1513" -fg "$ffffff" -hlbg "#283e26" -hlfg "#ffffff" -bgalt "#527d41" -separator-style "solid" -padding 50 
+
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# open thunar file manager
+bindsym $mod+backslash exec thunar
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# NOTE ON DISPLAYS
+# Left  -> DVI-D-1
+# Mid.  -> HDMI-0
+# Right -> DVI-I-1
+
+# Workspace Variables
+
+set $workspace1 "1: Terminals"
+set $workspace2 "2: Chrome"
+set $workspace3 "3: Gaming"
+set $workspace4 "4: Four"
+set $workspace5 "5: Chat"
+set $workspace6 "6: Teamspeak"
+set $workspace7 "7: Seven"
+set $workspace8 "8: Eight"
+set $workspace9 "9: Nine"
+set $workspace0 "10: Spotify"
+set $workspace- "11: Eleven"
+set $workspace= "12: Twelve"
+
+# Workspace Default Monitors
+
+workspace $workspace1 output HDMI-0
+workspace $workspace2 output HDMI-0 #Center Monitor
+workspace $workspace3 output HDMI-0
+workspace $workspace4 output HDMI-0
+workspace $workspace5 output HDMI-0
+workspace $workspace6 output HDMI-0
+workspace $workspace7 output HDMI-0
+workspace $workspace8 output HDMI-0
+
+workspace $workspace9 output DVI-I-1
+workspace $workspace0 output DVI-I-1 #Right Monitor
+
+workspace $workspace- output DVI-D-0
+workspace $workspace= output DVI-D-0 #Left Monitor
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace0
+bindsym $mod+minus workspace $workspace-
+bindsym $mod+equal workspace $workspace=
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1 
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace0
+bindsym $mod+Shift+minus move container to workspace $workspace-
+bindysm $mod+Shift+equal move container to workspace $workspace=
+
+# reload the configuration file
+bindsym $mod+Shift+t reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+#set_from_resource $c0 color0
+#set_from_resource $c1 color1
+#set_from_resource $c2 color2
+#set_from_resource $c3 color3
+#set_from_resource $c4 color4
+#set_from_resource $c5 color5
+#set_from_resource $c6 color6
+#set_from_resource $c7 color7
+#set_from_resource $c8 color8
+
+set_from_resource $bg-color 	         color2
+set_from_resource $inactive-bg-color     color1
+set_from_resource $text-color            color2
+set_from_resource $inactive-text-color   color1
+set_from_resource $urgent-bg-color       color4
+set_from_resource $bar-color		 color0
+
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          $bg-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $bg-color
+client.urgent 		$urgent-bg-color    $urgent-bg-color   $text-color 	    $bg-color
+
+#bar {
+#        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#	position top
+#	tray_output none
+#
+#	colors {
+#		background $bar-color
+#	    	separator #757575
+#		#                  border             background         text
+#		focused_workspace  $bar-color         $bar-color         $text-color
+#		inactive_workspace $bar-color	      $bar-color         $inactive-text-color
+#		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#		active_workspace   $bar-color	      $bar-color         $inactive-text-color
+#	}
+#}
+
+
+# Custom Key Bindings
+bindsym $mod+shift+x exec ~/scripts/betterlockscreen --lock
+
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Wallpaper and Screen Configuration
+#exec_always xrandr --output DP-1 --off --output DVI-I-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output DVI-D-1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
+
+exec_always feh --bg-scale ~/Pictures/wallpaper2.jpg
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+# Applications Open at Startup
+exec compton -f
+exec slack
+exec spotify
+exec chromium-broswer
+exec xbindkeys
+exec mpdscribble
+exec mpd
+exec wal -R
+exec xrdb .Xresources
+exec ~/scripts/workspace1.sh
+exec ~/scripts/workspace9.sh
+exec autocutsel
+exec nextcloud
+exec bum --size 300
+exec xset s off -dpms
+
+# Default Workspaces for Application
+assign [class="Slack"] $workspace-
+assign [class="Todoist"] $workspace8
+assign [class="mpv"] $workspace9
+for_window [class="Spotify"] move to workspace $workspace0
+for_window [class="TeamSpeak 3"] move to workspace $workspace-
+for_window [class="Steam"] move to workspace $workspace3
+for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="mpv"] floating enable
+
+for_window [title="floater"] floating enable 
+for_window [title="floater"] move absolute position 3440 px 960
+for_window [title="floater"] focus_on_window_activation urgent
+
+# Per Workspace Gap Configuration
+#workspace $workspace- gaps inner 30
+#workspace $workspace- gaps outer 40
+
+#workspace $workspace= gaps inner 30
+#workspace $workspace= gaps outer 40
+
+#workspace $workspace0 gaps inner 30
+#workspace $workspace0 gaps outer 40
+
+workspace $workspace9 gaps inner 20
+workspace $workspace9 gaps outer 20
+
+# Custom Keybinds
+
+bindsym $mod+Shift+c exec "~/puush-linux/puush -b"
+bindsym $mod+bracketright exec urxvt --title "floater" --geometry 40x3
+#bindsym $mod+bracketleft [title="floater"] kill
