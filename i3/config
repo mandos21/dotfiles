@@ -20,8 +20,8 @@ font pango:FantasqueSansMono-Regular 8
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Pixel Gap Configuration
-gaps inner 0
-gaps outer 0
+gaps inner 10
+gaps outer 10
 
 for_window [class="^.*"] border pixel 3
 
@@ -309,3 +309,9 @@ workspace $workspace9 gaps outer 20
 bindsym $mod+Shift+c exec "~/puush-linux/puush -b"
 bindsym $mod+bracketright exec urxvt --title "floater" --geometry 40x3
 #bindsym $mod+bracketleft [title="floater"] kill
+
+# Resize windows dynamically
+bindsym $mod+Shift+period "gaps inner all plus 5, gaps outer all plus 5"
+bindsym $mod+Shift+comma "gaps inner all minus 5, gaps outer all minus 5"
+
+
