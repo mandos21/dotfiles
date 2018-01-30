@@ -45,10 +45,11 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wunconsiji:pixelsize=10;1
+font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right = volume memory cpu wlan eth battery temperature date powermenu
+modules-right = scrobbles-today openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
 
 ;tray-position = right
 tray-padding = 2
@@ -263,8 +264,9 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+format-volume = <label-volume> 
+;label-volume = " " 
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
@@ -334,10 +336,48 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+
+
+
+
+
+
+
+
+
+[module/updates-arch-combined]
+type = custom/script
+format-prefix = " "
+format-underline = ${xrdb:color2:#222}
+exec = ~/polybar-scripts/updates-arch-combined.sh
+interval = 600
+
+[module/openweathermap-simple]
+type = custom/script
+format-underline = ${xrdb:color2:#222}
+exec = ~/polybar-scripts/openweathermap-simple.sh
+interval = 600
+label-font = 4
+
+[module/scrobbles-today]
+type = custom/script
+format-prefix = " "
+format-underline = ${xrdb:color2:#222}
+exec = python3 ~/Nextcloud/Programs/PyScrobbler/scrobbles.py
+interval = 300
+
+
+
+
+
+
+
+
+
 [module/powermenu]
 type = custom/menu
 
-expand-right = true
+expand-right = false
 
 format-spacing = 1
 
@@ -401,10 +441,11 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wunconsiji:pixelsize=10;1
+font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right = volume memory cpu wlan eth battery temperature date powermenu
+modules-right = scrobbles-today openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
 
 ;tray-position = right
 tray-padding = 2
@@ -426,8 +467,8 @@ cursor-click = pointer
 cursor-scroll = ns-resize
 
 
+
 [bar/left]
-monitor = ${env:MONITOR:DVI-D-0}
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -453,10 +494,11 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = Wunconsiji:pixelsize=10;1
+font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
 modules-center = mpd
-modules-right = volume memory cpu wlan eth battery temperature date powermenu
+modules-right = scrobbles-today openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
 
 ;tray-position = right
 tray-padding = 2
@@ -476,5 +518,3 @@ tray-padding = 2
 
 cursor-click = pointer
 cursor-scroll = ns-resize
-
-; vim:ft=dosini
