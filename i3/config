@@ -20,12 +20,12 @@ set $alt Mod1
 font pango:Fantasque Sans Mono 8
 
 # Pixel Gap Configuration
-gaps inner 10
-gaps outer 10
+#gaps inner 10
+#gaps outer 10
 
 
 # configure pixel border size
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 1
 
 
 # focus the child container
@@ -223,7 +223,7 @@ bindsym $mod+r mode "resize"
 
 
 # Custom Key Bindings
-bindsym $mod+shift+x exec ~/scripts/betterlockscreen --lock
+bindsym $mod+shift+x exec ~/scripts/glitchlock
 
 
 # Pulse Audio controls
@@ -244,18 +244,19 @@ bindsym $mod+Shift+bracketright exec urxvt --title "floater" --geometry 40x3
 bindsym $mod+bracketleft exec urxvt --title "lastfmflo" --geometry 60x20 -e python3 ~/Nextcloud/Programs/lastfm/lastinfo/lastinfo.py
 
 # Resize windows dynamically
-bindsym $mod+Shift+period "gaps inner all plus 5, gaps outer all plus 5"
-bindsym $mod+Shift+comma "gaps inner all minus 5, gaps outer all minus 5"
+bindsym $mod+Shift+period "gaps inner current plus 5, gaps outer current plus 5"
+bindsym $mod+Shift+comma "gaps inner current minus 5, gaps outer current minus 5"
 
 # Open Chrome
 
 bindsym $mod+i exec "chromium --incognito"
 bindsym $mod+c exec chromium
 
-# MPD Volume controls
+# MPD  Controls
 
 bindsym $mod+plus exec mpc volume +5
 bindsym $mod+minus exec mpc volume -5
+bindsym $mod+p exec mpc toggle
 #########################################################################
 #                                                                       #
 #                       LAUNCH                                          #
@@ -264,8 +265,7 @@ bindsym $mod+minus exec mpc volume -5
 
 
 # Wallpaper and Screen Configuration
-exec xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
-
+exec xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
 
 #exec_always feh --bg-scale ~/Pictures/wallpaper2.jpg
 exec_always pkill polybar
@@ -296,7 +296,10 @@ assign [class="mpv"] $ws9
 for_window [class="Spotify"] move to workspace $ws0
 for_window [class="TeamSpeak 3"] move to workspace $ws13
 for_window [class="Steam"] move to workspace $ws3
+for_window [title="Friends List"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [title="Time Tracker"] floating enable
+for_window [class="Yad"] floating enable
 #for_window [class="mpv"] floating enable
 
 for_window [title="floater"] floating enable 
@@ -306,8 +309,8 @@ for_window [title="floater"] focus_on_window_activation urgent
 for_window[title="lastfmflo"] floating enable, focus_on_window_activation urgent
 
 # Per Workspace Gap Configuration
-workspace $ws9 gaps inner 20
-workspace $ws9 gaps outer 20
+#workspace $ws9 gaps inner 20
+#workspace $ws9 gaps outer 20
 
 #workspace $ws12 gaps inner 30
 #workspace $ws12 gaps outer 40
@@ -331,6 +334,16 @@ set_from_resource $text-color            color2
 set_from_resource $inactive-text-color   color1
 set_from_resource $urgent-bg-color       color4
 set_from_resource $bar-color             color0
+
+
+#set_from_resource $bg-color              color3
+#set_from_resource $inactive-bg-color     color5
+#set_from_resource $text-color            color2
+#set_from_resource $inactive-text-color   color1
+#set_from_resource $urgent-bg-color       color4
+#set_from_resource $bar-color             color0
+
+
 
 
 # window colors

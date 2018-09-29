@@ -48,9 +48,9 @@ rofi.color-normal:	#0B2D33, #A5A1B4, #0B2D33, #54A1B8, #0B2D33
 rofi.color-urgent:	#0B2D33, #4897B0, #0B2D33, #4897B0, #A5A1B4
 rofi.color-window:	#0B2D33, #0B2D33, #54A1B8
 rofi.theme:	~/.cache/wal/colors-rofi-dark.rasi
-urxvt.font:	xft:hack:pixelsize=12:antialias=true
-urxvt.internalBorder:	30
+urxvt.font:	xft:hack:pixelsize=10:antialias=true
+urxvt.internalBorder:	10
 urxvt.scrollBar:	False
 urxvt.shading:	30
-urxvt.transparent:	true
+urxvt.transparent:	false
 urxvt.enable-unicode3: true

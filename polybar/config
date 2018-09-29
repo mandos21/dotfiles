@@ -18,7 +18,6 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
@@ -29,7 +28,7 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-underline = ${colors.background}
 
 label-layout = %layout%
 label-layout-underline = ${colors.secondary}
@@ -86,7 +85,7 @@ label-mode-background = ${colors.primary}
 label-focused = %index%
 label-focused-foreground = ${xrdb:color2:#222}
 label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${xrdb:color2:#222}
+label-focused-underline = ${xrdb:color0:#222}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
@@ -107,8 +106,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 [module/mpd]
 type = internal/mpd
 
-
-format-online = <label-song>
+format-prefix = "|  "
+format-playing = <label-song>
+format-paused = " "
 
 icon-prev = 
 icon-stop = 
@@ -118,7 +118,7 @@ icon-next = 
 
 label-song-maxlen = 100
 label-song-ellipsis = true
-format-online-underline = ${xrdb:color2:#222}
+format-online-underline = ${xrdb:color0:#222}
 
 
 [module/xbacklight]
@@ -146,17 +146,17 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "|   "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${xrdb:color2:#222}
+format-underline = ${xrdb:color0:#222}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "|   "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${xrdb:color2:#222}   
+format-underline = ${xrdb:color0:#222}   
 label = %percentage_used%%
 
 [module/wlan]
@@ -165,7 +165,7 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = {xrdb:color2:#222}
+format-connected-underline = {xrdb:color0:#222}
 label-connected = %essid%
 
 format-disconnected =
@@ -186,8 +186,9 @@ type = internal/network
 interface = enp4s0
 interval = 3.0
 
-format-connected-underline = ${xrdb:color2:#222}
-format-connected-prefix = " "
+format-connected-prefix = " "
+format-connected-underline = ${xrdb:color0:#222}
+#format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -201,17 +202,17 @@ format-disconnected =
 type = internal/date
 interval = 1
 
-date = 
-date-alt = "%B %d %Y"
+date = "  %B %d  |  %A  | " 
+date-alt = "  %B %d  |  %A  | "
 
 time = %I:%M:%S
 time-alt = %I:%M:%S
 
-format-prefix = 
+format-prefix = "|  "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline =${xrdb:color2:#222}
+format-underline =${xrdb:color0:#222}
 
-label = %date% %time%
+label = %time%
 
 [module/volume]
 type = internal/volume
@@ -296,22 +297,23 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/updates-arch-combined]
 type = custom/script
-format-prefix = " "
-format-underline = ${xrdb:color2:#222}
+format-prefix = "|   "
+format-underline = ${xrdb:color0:#222}
 exec = ~/polybar-scripts/updates-arch-combined.sh
 interval = 600
 
 [module/openweathermap-simple]
+format-prefix = "|  "
 type = custom/script
-format-underline = ${xrdb:color2:#222}
+format-underline = ${xrdb:color0:#222}
 exec = ~/polybar-scripts/openweathermap-simple.sh
 interval = 600
 label-font = 4
 
 [module/scrobbles-today]
 type = custom/script
-format-prefix = " "
-format-underline = ${xrdb:color2:#222}
+format-prefix = "♪ "
+format-underline = ${xrdb:color0:#222}
 exec = python3 ~/Nextcloud/Programs/lastfm/PyScrobbler/scrobbles.py
 interval = 300
 
@@ -363,10 +365,93 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
+[module/whoami]
+type=custom/script
+interval = 0
+format-prefix = "  "
+exec = python ~/polybar-scripts/user.py
+
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python /home/mandos/polybar-scripts/spotify_status.py -f '{artist}: {song}' -t 100
+#format-underline = #1db954
+
+
+[module/popup-calendar]
+type = custom/script
+format-prefix = "|  "
+exec = ~/polybar-scripts/popup-calendar.sh
+interval = 5
+click-left = ~/polybar-scripts/popup-calendar.sh --popup
+
+
+[module/info-projecthamster]
+type = custom/script
+exec = ~/polybar-scripts/info-projecthamster.sh
+interval = 5
 
 
 
 
+
+[bar/bottom]
+monitor = ${env:MONITOR:HDMI-0}
+bottom = true
+width = 100%
+height = 20
+;offset-x = 10%
+;offset-y = 1%
+radius = 00.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = $foreground
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
+font-2 = fontawesome-webfont:pixelsize=8;1
+font-3 = Weather Icons:size=10;1
+
+modules-left = eth
+modules-center = mpd spotify
+modules-right = scrobbles-today openweathermap-simple memory cpu updates-arch-combined
+
+;mpd spotify scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu eth battery temperature
+
+;tray-position = right
+tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 
 
@@ -394,7 +479,7 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
@@ -402,8 +487,10 @@ font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
-modules-center = mpd
-modules-right =  scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
+modules-center = 
+modules-right = info-projecthamster popup-calendar date powermenu
+
+;mpd spotify scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu eth battery temperature
 
 ;tray-position = right
 tray-padding = 2
@@ -455,8 +542,8 @@ font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
-modules-center = mpd
-modules-right =  scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
+modules-center = 
+modules-right = info-projecthamster popup-calendar date powermenu
 
 ;tray-position = right
 tray-padding = 2
@@ -508,8 +595,8 @@ font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
 
 modules-left = bspwm i3
-modules-center = mpd
-modules-right =  scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu wlan eth battery temperature date powermenu
+modules-center = 
+modules-right = info-projecthamster popup-calendar date powermenu
 
 ;tray-position = right
 tray-padding = 2
