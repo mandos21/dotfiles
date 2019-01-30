@@ -12,5 +12,6 @@ polybar middle &
 polybar left &
 polybar right &
 polybar bottom &
+polybar bottom2 &
 
 echo "Bars Launched ..."

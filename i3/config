@@ -12,8 +12,8 @@
 #                                                                  $$$$$$/  
 
 # Sets additional mod keys
-set $mod Mod4
-set $alt Mod1
+set $mod Mod1
+set $alt Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -54,7 +54,9 @@ set $ws13 "13"
 set $ws14 "14"
 set $ws15 "15"
 set $ws16 "16"
-
+set $wsD1 "d1"
+set $wsD2 "d2"
+set $wsD3 "d3"
 
 # Workspace Default Monitors
 
@@ -66,18 +68,20 @@ workspace $ws5 output HDMI-0
 workspace $ws6 output HDMI-0
 workspace $ws7 output HDMI-0
 workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
+workspace $ws0 output HDMI-0
+workspace $wsD1 output HDMI-0
 
-workspace $ws9 output DVI-I-1
-workspace $ws0 output DVI-I-1 #Right Monitor
-workspace $ws11 output DVI-I-1
+workspace $ws11 output DVI-I-1 #Right Monitor
 workspace $ws12 output DVI-I-1
+workspace $ws13 output DVI-I-1
+workspace $wsD2 output DVI-I-1
 
 
-
-workspace $ws13 output DVI-D-0
 workspace $ws14 output DVI-D-0 #Left Monitor
 workspace $ws15 output DVI-D-0
 workspace $ws16 output DVI-D-0
+workspace $wsD3 output DVI-D-0
 
 
 #########################################################################
@@ -239,7 +243,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Extra handy keybinds/scripts
-bindsym $mod+bracketright exec urxvt --title "floater" --geometry 40x3 -e python3
+bindsym $mod+bracketright exec urxvt --title "floater" --geometry 60x20 -e python3
 bindsym $mod+Shift+bracketright exec urxvt --title "floater" --geometry 40x3
 bindsym $mod+bracketleft exec urxvt --title "lastfmflo" --geometry 60x20 -e python3 ~/Nextcloud/Programs/lastfm/lastinfo/lastinfo.py
 
@@ -253,10 +257,21 @@ bindsym $mod+i exec "chromium --incognito"
 bindsym $mod+c exec chromium
 
 # MPD  Controls
-
 bindsym $mod+plus exec mpc volume +5
 bindsym $mod+minus exec mpc volume -5
 bindsym $mod+p exec mpc toggle
+
+
+# Open Sublime
+bindsym $mod+t exec subl3
+
+# Open to new workspace
+bindsym $mod+q exec ~/scripts/showdesk.sh
+
+# Show desktops
+bindsym $mod+$alt+q exec ~/scripts/clear.sh
+
+
 #########################################################################
 #                                                                       #
 #                       LAUNCH                                          #
@@ -279,32 +294,31 @@ exec chromium-broswer
 exec xbindkeys
 exec mpdscribble
 exec mpd
-exec wal -R
 exec xrdb .Xresources
+exec wal -R
 exec ~/scripts/workspace1.sh
 exec ~/scripts/workspace9.sh
 exec autocutsel
 exec nextcloud
+exec dbus-launch
 #exec bum --size 300
 exec xset s off -dpms
 exec ~/scripts/lemonbar.sh
 exec --no-startup-id ~/scripts/blurme &
 
 # Default Workspaces for Application
-assign [class="Slack"] $ws13
-assign [class="mpv"] $ws9
-for_window [class="Spotify"] move to workspace $ws0
-for_window [class="TeamSpeak 3"] move to workspace $ws13
-for_window [class="Steam"] move to workspace $ws3
+assign [class="Slack"] $ws14
+assign [class="mpv"] $ws11
+for_window [class="Spotify"] move to workspace $ws12
+#for_window [class="TeamSpeak 3"] move to workspace $ws14
+#for_window [class="Steam"] move to workspace $ws3
 for_window [title="Friends List"] floating enable
 for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 for_window [title="Time Tracker"] floating enable
 for_window [class="Yad"] floating enable
 #for_window [class="mpv"] floating enable
 
-for_window [title="floater"] floating enable 
-for_window [title="floater"] move absolute position 3440 px 960
-for_window [title="floater"] focus_on_window_activation urgent
+for_window [title="floater"] floating enable, focus_on_window_activation urgent 
 
 for_window[title="lastfmflo"] floating enable, focus_on_window_activation urgent
 

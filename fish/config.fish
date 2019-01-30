@@ -1,5 +1,7 @@
 set fish_greeting "Welcome, Mandos"\n
 
+
+
 function fish_prompt
 	echo -n (prompt_pwd)
 	echo -n " " 

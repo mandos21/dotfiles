@@ -54,3 +54,4 @@ urxvt.scrollBar:	False
 urxvt.shading:	30
 urxvt.transparent:	false
 urxvt.enable-unicode3: true
+urxvt.chdir: /home/mandos
