@@ -8,7 +8,7 @@ pkill polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
-polybar middle &
+polybar middle -l info &
 polybar left &
 polybar right &
 polybar bottom &

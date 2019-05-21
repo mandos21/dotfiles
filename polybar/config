@@ -82,18 +82,18 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %name%
 label-focused-foreground = ${xrdb:color6:#222}
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${xrdb:color0:#222}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %name%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %name%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
@@ -227,6 +227,12 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+[module/notification-chess]
+type = custom/script
+exec = ~/polybar-scripts/notification-chess.sh
+interval = 10
+click-left = xdg-open https://www.chess.com/goto_ready_game & disown
+
 [module/battery]
 type = internal/battery
 battery = BAT0
@@ -309,7 +315,7 @@ label-font = 4
 
 [module/scrobbles-today]
 type = custom/script
-format-prefix = "♪ "
+format-prefix = "|  ♪ "
 format-underline = ${xrdb:color0:#222}
 exec = python3 ~/Nextcloud/Programs/lastfm/PyScrobbler/scrobbles.py
 interval = 300
@@ -425,14 +431,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
+font-0 = DejaVuSansNerd Font:style=book:size=10
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
 font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
+font-4 = font-logos:size=10;1
 
 modules-left = eth nettraf
 modules-center = mpd spotify
-modules-right = scrobbles-today openweathermap-simple memory cpu system-cpu-temppercore updates-arch-combined
+modules-right =  memory cpu system-cpu-temppercore 
 
 ;mpd spotify scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu eth battery temperature
 
@@ -480,10 +487,11 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
+font-0 = DejaVuSansNerd Font:style=book:size=10
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
 font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
+font-4 = font-logos:size=10;1
 
 modules-left = eth nettraf
 modules-center = mpd spotify
@@ -536,14 +544,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
+font-0 = DejaVuSansNerd Font:style=book:size=10
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
 font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
+font-4 = font-logos:size=10;1
 
 modules-left = bspwm i3
 modules-center = 
-modules-right = info-projecthamster popup-calendar date powermenu
+modules-right = notification-chess scrobbles-today updates-arch-combined openweathermap-simple popup-calendar date powermenu
 
 ;mpd spotify scrobbles-today info- openweathermap-simple updates-arch-combined memory cpu eth battery temperature
 
@@ -591,14 +600,16 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+font-0 = DejaVuSansNerd Font:style=book:size=10
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
 font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
+font-4 = font-logos:size=10;1
 
 modules-left = bspwm i3
 modules-center = 
-modules-right = info-projecthamster popup-calendar date powermenu
+modules-right = notification-chess scrobbles-today updates-arch-combined openweathermap-simple popup-calendar date powermenu
+
 
 ;tray-position = right
 tray-padding = 2
@@ -644,10 +655,11 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
+font-0 = DejaVuSansNerd Font:style=book:size=10
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;1
 font-2 = fontawesome-webfont:pixelsize=8;1
 font-3 = Weather Icons:size=10;1
+font-4 = font-logos:size=10;1
 
 modules-left = bspwm i3
 modules-center = 

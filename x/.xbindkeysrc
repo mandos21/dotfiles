@@ -49,5 +49,9 @@
 "bspc dekstop -f prev"
    b:9
 
+# switch to workspace d1
+"i3-msg workspace "
+  m:0xc + c:23
+
 #
 # End of xbindkeys configuration

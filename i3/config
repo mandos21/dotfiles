@@ -14,6 +14,7 @@
 # Sets additional mod keys
 set $mod Mod1
 set $alt Mod4
+set $ctrl Control
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -22,6 +23,9 @@ font pango:Fantasque Sans Mono 8
 # Pixel Gap Configuration
 #gaps inner 10
 #gaps outer 10
+
+# enable back_and_forth switching 
+workspace_auto_back_and_forth yes
 
 
 # configure pixel border size
@@ -54,7 +58,7 @@ set $ws13 "13"
 set $ws14 "14"
 set $ws15 "15"
 set $ws16 "16"
-set $wsD1 "d1"
+set $wsD1 ""
 set $wsD2 "d2"
 set $wsD3 "d3"
 
@@ -78,15 +82,15 @@ workspace $ws13 output DVI-I-1
 workspace $wsD2 output DVI-I-1
 
 
-workspace $ws14 output DVI-D-0 #Left Monitor
-workspace $ws15 output DVI-D-0
-workspace $ws16 output DVI-D-0
-workspace $wsD3 output DVI-D-0
+workspace $ws14 output DVI-I-1 #Left Monitor
+workspace $ws15 output DVI-I-1
+workspace $ws16 output DVI-I-1
+workspace $wsD3 output DVI-I-1
 
 
 #########################################################################
 #                                                                       #
-#                       KEYBINDS                                        #
+#                       i3   KEYBINDS                                   #
 #                                                                       #
 #########################################################################
 
@@ -226,8 +230,17 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-# Custom Key Bindings
+
+#########################################################################
+#                                                                       #
+#                       CUSTOM  KEYBINDS                                #
+#                                                                       #
+#########################################################################
+
+
+
 bindsym $mod+shift+x exec ~/scripts/glitchlock
+
 
 
 # Pulse Audio controls
@@ -269,7 +282,14 @@ bindsym $mod+t exec subl3
 bindsym $mod+q exec ~/scripts/showdesk.sh
 
 # Show desktops
-bindsym $mod+$alt+q exec ~/scripts/clear.sh
+bindsym $mod+$alt+q exec ~/scripts/clean.sh
+
+# Open "ssh workspace"
+bindsym $mod+$alt+s exec ~/scripts/sshworkspace.sh
+
+# Utilize Focus mode script
+bindsym $mod+Shift+f exec ~/scripts/focusmode.py
+
 
 
 #########################################################################
@@ -280,7 +300,7 @@ bindsym $mod+$alt+q exec ~/scripts/clear.sh
 
 
 # Wallpaper and Screen Configuration
-exec xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-0 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
+exec xrandr --output DVI-D-0 --off --output HDMI-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DVI-I-0 --off --output DP-1 --off --output DP-0 --off
 
 #exec_always feh --bg-scale ~/Pictures/wallpaper2.jpg
 exec_always pkill polybar
